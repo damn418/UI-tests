@@ -1,11 +1,8 @@
-import time
-
 import allure
 from base.base_page import BasePage
 from config.links import Links
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import Keys
-from selenium.webdriver.common.action_chains import ActionChains
 
 
 class PersonalPage(BasePage):
@@ -17,11 +14,9 @@ class PersonalPage(BasePage):
 
     def change_name(self, new_name):
         with allure.step(f"Change name on {new_name} "):
-            self.wait.until(EC.invisibility_of_element_located(self.SPINNER))
-            self.wait.until(EC.visibility_of_element_located(self.FIRST_NAME_FIELD))
             first_name_field = self.wait.until(EC.element_to_be_clickable(self.FIRST_NAME_FIELD))
+            self.wait.until(EC.invisibility_of_element_located(self.SPINNER))
 
-            # time.sleep(1)
             first_name_field.send_keys(Keys.CONTROL + "a")
             first_name_field.send_keys(Keys.DELETE)
 
@@ -30,7 +25,6 @@ class PersonalPage(BasePage):
 
     @allure.step("Save changes")
     def save_changes(self):
-        self.wait.until(EC.invisibility_of_element_located(self.SPINNER))
         self.wait.until(EC.element_to_be_clickable(self.SAVE_BUTTON)).click()
 
     @allure.step("Changes has bees saved successfully")

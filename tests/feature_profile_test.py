@@ -18,7 +18,7 @@ class TestProfileFeature(BaseTest):
         self.dashboard_page.is_opened()
         self.dashboard_page.click_my_info_link()
         self.personal_page.is_opened()
-        self.personal_page.change_name(f"Ержан {random.randint(1, 100)}")
+        self.personal_page.change_name(f"Ержан {random.randint(1, 1000)}")
         self.personal_page.save_changes()
         self.personal_page.is_changes_saved()
         self.personal_page.make_screenshot("Success")
